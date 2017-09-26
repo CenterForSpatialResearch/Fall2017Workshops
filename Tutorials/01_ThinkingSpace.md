@@ -1,6 +1,6 @@
 ## Thinking in Space 
 
-In this workshop, you will learn introductory skills involved in using open source geographic information software (QGIS) to map existing spatial datasets. After the completion of this exercise, you should be able to ....
+In this workshop, you will learn introductory skills involved in using open source geographic information software (QGIS) to map existing spatial datasets. After the completion of this exercise, you should...
 
 * have familiarity with the QGIS user interface 
 * comprehend the components of a shapefile 
@@ -8,14 +8,14 @@ In this workshop, you will learn introductory skills involved in using open sour
 * perform a table join to add additional data to an existing shapefile’s attribute table
 * query a GIS dataset, using both tabular and spatial queries 
 
-#### Part 00
+### Downloads
 Download the GitHub repository for this workshop. Using the green button [here](https://github.com/CenterForSpatialResearch/Fall2017Workshops), select `Download ZIP`. The Class_Data folder will then have all of the datasets needed for this tutorial. 
 
 In addition to the data files you have downloaded already you can optionally download the Gridded Population of the World raster dataset [here](https://drive.google.com/file/d/0B5KywkNXsT4JYlZGd1lReUVyYVk/view?usp=sharing). Please create a new folder in the Data directory called Raster and save the GriddedPop.zip file there. Once it has downloaded unzip the file so that we can use its contents. 
 
-### Mapping Data 00: Mapping World Population(s)
+### Mapping World Population(s)
 #### Premise
-How might we depict the urbanized world in terms of population? Which countries in the world are majority urban? In this exercise you will create a map of population values in world countries and cities (and at the same time explore the QGIS interface). 
+How might we depict the urbanized world in terms of population? Which countries in the world are majority urban? In this exercise you will create a map of population values in world countries and cities in order to explore the QGIS interface and basic methods of querying spatial data. 
 
 The data sets you will use are: a point file for the locations of populated places around the world; a a polygon file for country boundaries; and optionally a very cool raster dataset that describes world population in 1km grid created by [CEISIN](http://www.ciesin.org). 
 
@@ -77,9 +77,9 @@ When your style settings are finished, **click** `OK` to exit the properties men
 
 **Save** your QGIS project by selecting `Project` > `Save`. Name your project MappingData_Population.qgs and save it in the Tutorials folder you downloaded with the repository for this workshop. QGIS projects are saved as .qgs files. It is important to note that the data layers are not saved with it the map project but are rather linked to the project.
 
-#### Examining the attribute tables of your data
+#### Examining your data's attribute tables
 In the layers menu right click on populated_places, and select `Open Attribute Table`. You are now viewing the attribute information associated with each feature in the populated_places feature class. Inspect the column names and the values inside them. 
-![image](https://github.com/CenterForSpatialResearch/Fall2017Workshops/tree/master/Tutorials/img/01_popPlaces.png)
+![style](https://github.com/CenterForSpatialResearch/Fall2017Workshops/blob/master/Tutorials/img/01_popPlaces.png)
 
 Do the same for the admin_0_countries layer. You'll notice that the attribute table contains the country name in a few forms, its ISO code, as well as the region/subregion it sits within. However there is no information about the population size of the country. We will now use a new tool to add this information from a different table: a table join. 
 

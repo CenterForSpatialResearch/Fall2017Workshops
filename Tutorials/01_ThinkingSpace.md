@@ -297,7 +297,7 @@ Finally use one of the export options circled in blue above to save the map comp
 
 * Make this map composition your own – experiment with changing colors, and symbol sizes and the locations of the text and scale bars. The aim is to create a design that you are pleased with, that is clear, and follows cartographic conventions. 
 
-![Attribute](https://github.com/CenterForSpatialResearch/MappingForTheUrbanHumanities/blob/master/Tutorials/Images/MappingData01/Mapping_WorldPopulation.png)
+![Attribute](https://github.com/CenterForSpatialResearch/Fall2017Workshops/blob/master/Tutorials/img/Mapping_WorldPopulation.png)
 
 ______________________________________________________________________________________________________________
 

@@ -22,6 +22,7 @@ The data sets you will use are: a point file for the locations of populated plac
 #### Notes on the data: 
 
 The data we are using about populated places is aggregated by [Natural Earth v. 2.0](http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/), the population estimates included in the point file are gathered using [LandScan](http://web.ornl.gov/sci/landscan/) which uses satellite imagery and sophisticated (but some say flawed) algorithms in order to model world population. 
+
 Country-level population data was published by the [United Nations Population Division](http://esa.un.org/unpd/wpp/Download/Standard/Population/) in 2010. All figures are reported in thousands, i.e., if the population field says 7,000 in the dataset this equals 7,000,000 inhabitants. We have provided a cleaned version of this dataset but the original can be downloaded [here](http://esa.un.org/unpd/wpp/Download/Standard/Population/). 
 
 The Gridded Population of the World describes the distribution of population across the planet and is not explicitly linked to geopolitical boundaries. It is created by Columbia’s Center for International Earth Science Information Network (CIESIN) through compiling census surveys from all over the world. You will be prompted to download a version of it in the Mollweide projection (more on projection systems later...) in the next section. You can download the original data [here](http://beta.sedac.ciesin.columbia.edu/data/set/gpw-v4-population-count/data-download), the data is free to download however you will need to create an account to access it. 
@@ -85,7 +86,7 @@ Do the same for the admin_0_countries layer. You'll notice that the attribute ta
 
 #### Adding a delimited text file to the map 
 
-Now we will add the table that describes population by country which we will join to the country polygons in order to be able to examine country level population values spatially. 
+As we just discovered, our country boundary file does not contain information about population. We downloaded this this information from the United Nations in a separate tabular file, we will join this information to the country polygons in order to be able to examine country level population values spatially. 
 
 **Select** the `add delimited layer` button. 
 
@@ -129,11 +130,11 @@ Let’s review the column names in the TotalPopulation_Countries.csv file. **Ope
 
 Note that the Country_Code is identical to the Cnt_Code for each country, and each is unique -- no two countries have the same ISO_N3 number. This unique field common to both datasets is what allows us to join the tabular population data to the vector file describing the geometry of those countries. 
 
-We always start the join on the file that we are joining to. Here, we are joining the population estimates table to the country boundary shapefile. Thus, Open the Properties for admin_0_countries, and navigate to “Joins” in the left hand menu. Click the “+” icon. Make the following selections in the dialogue box which appears.
+We always start the join on the file that we are joining to. Here, we are joining the population estimates table to the country boundary shapefile. Thus, Open the Properties for admin_0_countries, and navigate to “Joins” in the left hand menu. Click the “+” icon. Make the following selections in the dialog box which appears.
 
 ![Attribute](https://github.com/CenterForSpatialResearch/MappingForTheUrbanHumanities/blob/master/Tutorials/Images/MappingData01/12_JoinDialogue.png)
 
-**Select** TotalPopulation_Countries as the “join layer”, Country_Code is the “join field”, and Cnt_Code is the “target field” which matches the join field in the admin_0_countries layer. Select the box next to “Custom field name prefix” and delete the contents of that field (note this is a helpful field if we are joining data from many different tables to one shapefile as it allows you to distinguish the source table). **Click** `OK` to close the join dialogue. Then **Click** `OK` to close the layer properties menu. 
+**Select** TotalPopulation_Countries as the “join layer”, Country_Code is the “join field”, and Cnt_Code is the “target field” which matches the join field in the admin_0_countries layer. Select the box next to “Custom field name prefix” and delete the contents of that field (note this is a helpful field if we are joining data from many different tables to one shapefile as it allows you to distinguish the source table). **Click** `OK` to close the join dialog. Then **Click** `OK` to close the layer properties menu. 
 
 Open the attribute table for the countries shapefile. You’ll notice two new fields have been joined to the right hand side of the table: `Name` and `Pop_2010.`
 
@@ -145,7 +146,11 @@ This new layer will then be added to the map and will contain the population est
 
 #### Attribute Tables and Data Querying
 
-Now that we have assembled these data layers we can begin to ask a few simple questions about the different measures of world population that each depicts. We will accomplish this by querying the attribute fields of our two vector layers, the populated places and the countries. To do this we will select features using an expression which is sometimes referred to as Select by Attributes. In addition we will use 
+Now that we have assembled these data layers we can begin to ask a few simple questions about the size of urban populations in relation to the total population size of the country they fall within. 
+
+Specifically we will ask: how many large cities are within small countries?
+
+We will accomplish this by querying the attribute fields of our two vector layers, the populated places and the countries. To do this we will select features using an expression which is sometimes referred to as Select by Attributes. In addition we will use 
 
 We will answer a few questions: 
 * How many cities have populations of greater than two million people? 
@@ -164,7 +169,7 @@ Option 2:
 
 ![Attribute](https://github.com/CenterForSpatialResearch/MappingForTheUrbanHumanities/blob/master/Tutorials/Images/MappingData01/13_SelectByExpression.png)
 
-Either route will open the `Select by Expression` tool. We can be sure we are selecting features from the correct layer from the header of this dialogue box. We see that the header reads “Select by expression - populated_places” and because we will select the cities first we know we are selecting features from the correct layer. 
+Either route will open the `Select by Expression` tool. We can be sure we are selecting features from the correct layer from the header of this dialog box. We see that the header reads “Select by expression - populated_places” and because we will select the cities first we know we are selecting features from the correct layer. 
 
 If we click on any of the terms in the central box (highlighted in magenta) a description of it will appear on the right side (highlighted in blue). We will combine the field name with other operators which we will find in the magenta box in order to build an expression in the green box on the left side. 
 
@@ -188,7 +193,7 @@ You should notice that some of the populated_places points will turn yellow. In 
 We will now save those 215 cities as a separate shapefile, just like we did for the admin_0_countries layer after we joined the UN population estimates to it. 
 
 * **Right-Click** populated_places in the Layers menu, **select** `Save As`. 
-* Then in the dialogue box which opens select `Save only selected features`, and save the shapefile in MappingData\Shape as populated_places_2mil.shp. 
+* Then in the dialog box which opens select `Save only selected features`, and save the shapefile in MappingData\Shape as populated_places_2mil.shp. 
 * This will then be added to our map as a new layer. In order to see the new layer clear your selection by clicking the `Deselect features from all layers button.`
 
 ![Attribute](https://github.com/CenterForSpatialResearch/MappingForTheUrbanHumanities/blob/master/Tutorials/Images/MappingData01/18_Deselect.png)
@@ -200,12 +205,13 @@ As we outlined above  we are interested in finding out how many countries have f
 * **Open** the attribute table for admin_0_countriesUNPop and select the `select features using an expression` tool. We will again select by expression in order to select the countries with fewer than seven million inhabitants. Use the expression builder as we did above with the populated places in order to select the countries with fewer than seven million inhabitants. Remember the dataset is expressed in thousands thus 7,000,000 will appear in the data as 7000. 
 * Your expression should read:  `"Pop_2010"  < 7000`
 
-The header bar of the attribute table will indicate that 124 of 238 features were selected. 
+The header bar of the attribute table will indicate that 108 of 238 features were selected. 
 
 Now, we will use this selection to identify which cities of greater than two million people are within countries with fewer than seven million people. To do this we will use the select by location tool. 
-* On the menu bar navigate to `Vector`>`Research Tools`>`Select By Location`. In the dialogue box that opens make the following selections: 
+* First ensure that we will be using just the *selected* countries when we perform the select by location query. On the menu bar navigate to `Processing`>`Options` Then under the `General` tab make sure that `use only selected features` is checked.  
+* On the menu bar navigate to `Vector`>`Research Tools`>`Select By Location`. In the dialog box that opens make the following selections: 
 
-![Attribute](https://github.com/CenterForSpatialResearch/MappingForTheUrbanHumanities/blob/master/Tutorials/Images/MappingData01/19_SelectLocation.png)
+![Attribute](https://github.com/CenterForSpatialResearch/Fall2017Workshops/blob/master/Tutorials/img/02_SelectLocation.png)
 
 In the bottom left hand corner of your QGIS window you will see that five populated places were selected. Open the populated places attribute table and identify which cities these are by choosing `Show Selected Features` from the dropdown menu at the bottom left of the window. 
 
@@ -220,22 +226,14 @@ Now on your own use select by attributes and select by location to answer the fo
 
 Now that we have these three different layers we can begin to create maps that highlight the differences between these different ways to measure population. We will compose a map that symbolizes each of our three data layers differently. We will use graduated symbols to express city population, a choropleth map for population by country and a classified color ramp for the gridded population. We will then go over cartographic conventions adding a legend and scale bar to the map and exporting as a PDF. 
 
-*Follow along as we demo this next section, and then create your map composition on your own. Be ready to discuss it in class next week.*
-
 **Proportional  symbols**
 
 We will symbolize the cities layer with symbols that are sized proportionally to their population -- a city with a larger population will have a larger circle and visa versa. 
 To do this open the layer properties menu for the populated_places layer and navigate to the Style tab. 
 
-Choose Graduated Symbols. Select pop_max as the column, and Natural Breaks (Jenks) as the mode. Click Classify and then click Apply. The populated places will now be colored according to their population. Now we’ll adjust them by size. 
+Choose Graduated Symbols. Select pop_max as the column, Size as the method, and Natural Breaks (Jenks) as the mode. Click Classify and then click Apply. The populated places will now be sized according to their population. 
 
-![Attribute](https://github.com/CenterForSpatialResearch/MappingForTheUrbanHumanities/blob/master/Tutorials/Images/MappingData01/21_Graduate.png)
-
-**Click** on the Advanced dropdown menu in the bottom right and navigate to the `Size scale field` option. Select `pop_max`. **Click** `Apply`. You’ll notice that the circles are huge and fill up the entire screen. Return to the `Size scale field` and now select `expression`. In the expression builder window that opens write the following `“pop_max” / 1000000`. Click `Okay` in the expression builder then click `Apply`. Click Okay to close the Properties window. 
-
-The outcome of your selections should look something like this:
-
-![Attribute](https://github.com/CenterForSpatialResearch/MappingForTheUrbanHumanities/blob/master/Tutorials/Images/MappingData01/22_Graduated2.png)
+![Attribute](https://github.com/CenterForSpatialResearch/Fall2017Workshops/blob/master/Tutorials/img/03_GraduatedSymbols.png)
 
 **Raster Classified Color Ramp** *(Optional)*
 

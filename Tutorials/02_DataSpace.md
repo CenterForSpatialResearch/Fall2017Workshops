@@ -2,7 +2,7 @@
 
 This workshop will introduce participants to methods for creating data for historical GIS applications. The workshop will cover how to give geographic coordinates (georeference) scanned historical maps using QGIS, as well as how to digitize (trace) features from this scanned map to create new shapefiles. These are two key ways of creating spatial data from historical or other sources. Additional online tools for georeferencing scanned maps will also be introduced.
 
-###Georeferencing a scanned paper map
+### Georeferencing a scanned paper map
 
 #### Premise
 

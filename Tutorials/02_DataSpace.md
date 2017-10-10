@@ -204,7 +204,7 @@ Also available as a stand-along resources page [here](https://github.com/CenterF
 		* this great tutorial covers how to create a custom gazetteer to geocode historical places
 
 
-###A Few Resources for Researching Spatial Data
+### A Few Resources for Researching Spatial Data
 
 **Places to Start**
 

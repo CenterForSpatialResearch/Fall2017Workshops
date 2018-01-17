@@ -1,6 +1,6 @@
 
 
-###Additional QGIS Tutorial Resources Related to Making Data
+### Additional QGIS Tutorial Resources Related to Making Data
 
 * **[Center for Spatial Research Tutorial Library](http://c4sr.columbia.edu/tutorials)**
 	* [Geocoding coordinates and street addresses](https://github.com/CenterForSpatialResearch/MappingForTheUrbanHumanities_2017/blob/master/Tutorials/06_MakingData03.md)
@@ -10,7 +10,7 @@
 		* this great tutorial covers how to create a custom gazetteer to geocode historical places
 
 
-###A Few Resources for Researching Spatial Data
+### A Few Resources for Researching Spatial Data
 
 **Places to Start**
 
